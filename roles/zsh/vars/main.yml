@@ -1,0 +1,3 @@
+---
+oh_my_zsh_dir: "{{ home_dir }}/.oh-my-zsh"
+antigen_dir: "{{ home_dir }}/.antigen"

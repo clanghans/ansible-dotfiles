@@ -1,0 +1,10 @@
+- name: Checks for oh-my-zsh installation | stat
+  stat:
+    path: "{{ oh_my_zsh_dir }}"
+  register: oh_my_zsh_stat
+
+- name: Cloning oh-my-zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git 
+    dest: "{{ oh_my_zsh_dir }}"
+  when: not oh_my_zsh_stat.stat.exists

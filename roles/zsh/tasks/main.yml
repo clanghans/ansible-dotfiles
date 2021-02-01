@@ -1,0 +1,30 @@
+- name: Installs zsh
+  become: yes
+  become_user: root
+  package:
+   name: zsh
+   state: present
+
+- name: Sets zsh as default shell for my user | command
+  become: yes
+  become_user: root
+  command: chsh -s /bin/zsh "{{ home_user }}"
+  register: zsh_for_user
+  failed_when: zsh_for_user.rc >= 1
+  changed_when: zsh_for_user.rc == 0
+
+- name: Import oh-my-zsh
+  import_tasks: oh-my-zsh.yml
+
+- name: Install Antigen
+  git:
+    repo: https://github.com/zsh-users/antigen.git
+    dest: "{{ antigen_dir }}"
+
+- name: Link dotfiles | on localhost
+  import_tasks: link.yml
+  when: ansible_connection == 'local'
+
+- name: copy dotfiles | to remote
+  import_tasks: deploy.yml
+  when: ansible_connection != 'local' 

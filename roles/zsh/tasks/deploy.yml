@@ -1,0 +1,23 @@
+- name: Copy .zshrc file | file
+  copy:
+    src: "zshrc"
+    dest: "{{ home_dir }}/.zshrc"
+    backup: yes
+          
+- name: Copy .zshenv file | file
+  copy:
+    src: "zshenv"
+    dest: "{{ home_dir }}/.zshenv"
+    backup: yes
+
+- name: Sync zsh folder | file
+  synchronize:
+    src: zsh
+    dest: "{{ home_dir }}/.zsh"
+
+# - name: Copy .zsh folder | file
+#   copy:
+#     src: "zsh"
+#     dest: "{{ home_dir }}/.zsh"
+#   register: result
+#     # backup: yes

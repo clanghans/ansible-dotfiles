@@ -1,0 +1,20 @@
+- name: Links .zshrc file | file
+  file:
+    src: "{{ role_path }}/files/zshrc"
+    dest: "{{ home_dir }}/.zshrc"
+    state: link
+    force: yes
+          
+- name: Links .zshenv file | file
+  file:
+    src: "{{ role_path }}/files/zshenv"
+    dest: "{{ home_dir }}/.zshenv"
+    state: link
+    force: yes
+
+- name: Links .zsh folder | file
+  file:
+    src: "{{ role_path }}/files/zsh"
+    dest: "{{ home_dir }}/.zsh"
+    state: link
+    force: yes

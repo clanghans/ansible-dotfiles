@@ -1,0 +1,13 @@
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
+
+# Python pip: ".local/bin"
+# Doom: ".emacs.d/bin"
+export PATH=$HOME/bin:$HOME/.emacs.d/bin:$HOME/.local/bin:$PATH
+
+export PAGER="less"
+export LESS="-isMFXR"
+export EDITOR="ec"
+export ALTERNATE_EDITOR="ec"
+export VISUAL="ec"
+export GIT_EDITOR="emacsclient -a '' -c"
