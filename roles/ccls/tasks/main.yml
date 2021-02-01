@@ -1,0 +1,21 @@
+- name: "Get CCLS server sources"
+  git:
+    repo: https://github.com/MaskRay/ccls
+    dest: "{{ lookup('env', 'ROOTDIR') }}/ccls"
+
+- name: "Configure CCLS"
+  command: "cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/lib/llvm-11 -DLLVM_INCLUDE_DIR=/usr/lib/llvm-11/include -DCMAKE_INSTALL_PREFIX={{ home_dir }}/pkg"
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/ccls"
+
+- name: "Compile CCLS"
+  command: "cmake --build Release"
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/ccls"
+
+- name: "Install CCLS"
+  make:
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/ccls"
+    target: install
+
+- name: "Stow CCLS"
+  command: stow -v -S "{{ home_dir }}/pkg/ccls" -t /usr/local
+  become: yes
