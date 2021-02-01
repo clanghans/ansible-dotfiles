@@ -1,0 +1,12 @@
+[local]
+localhost
+
+[local:vars]
+ansible_connection=local
+
+[arch-vm]
+192.168.100.56:2222
+
+[arch-vm:vars]
+ansible_user=chris
+ansible_sudo_pass=chris

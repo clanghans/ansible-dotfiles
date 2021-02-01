@@ -1,0 +1,11 @@
+- name: Set up local workstation
+  # hosts: local
+  # roles:
+  #   - role: zsh
+  #   - role: ccls
+  #   - role: cmake
+  #   - role: utils
+  #   - role: emacs
+  #   - role: doom
+  #   - role: dotfiles
+  #   - role: llvm11
