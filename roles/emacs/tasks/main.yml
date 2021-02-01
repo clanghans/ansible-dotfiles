@@ -1,0 +1,29 @@
+- name: "Get emacs sources"
+  git:
+    repo: git://git.savannah.gnu.org/emacs.git
+    dest: "{{ lookup('env', 'ROOTDIR') }}/emacs"
+
+- name: "Autogen"
+  command: "./autogen.sh"
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/emacs"
+
+- name: "Configure"
+  command: "./configure --with-x --with-xml2 --with-json --without-sound --with-gnutls --prefix={{ home_dir }}/pkg"
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/emacs"
+
+- name: "Make"
+  make:
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/emacs"
+    target: all
+    params:
+      NUM_THREADS: 4
+
+- name: "Install"
+  make:
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/emacs"
+    target: install
+
+- name: "Stow CMake"
+  command: stow -v -S "emacs" -t /usr/local --defer=share/info/dir
+  chdir: "{{ home_dir }}/pkg"
+  become: yes
