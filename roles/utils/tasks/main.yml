@@ -1,0 +1,55 @@
+- name: Install utils
+  vars: 
+  - installed_packages: 
+    - apt-utils
+    - autoconf
+    - build-essential
+    - bzip2
+    - cpanminus
+    - gawk
+    - git
+    - libc6-dev
+    - libgif-dev
+    - libgnutls28-dev
+    - libice-dev
+    - libjansson-dev
+    - libjpeg-dev
+    - libncurses-dev
+    - libpng-dev
+    - libsm-dev
+    - libssl-dev
+    - libssl-dev
+    - libtiff-dev
+    - libx11-dev
+    - libxext-dev
+    - libxi-dev
+    - libxml2-dev
+    - libxmu-dev
+    - libxmuu-dev
+    - libxpm-dev
+    - libxrandr-dev
+    - libxt-dev
+    - libxtst-dev
+    - libxv-dev
+    - make
+    - patch
+    - perlbrew
+    - pkg-config
+    - python3-apt
+    - stow
+    - ripgrep
+    - fd
+    - fzf
+    - cmake
+    - texi2html
+    - texinfo
+    - texlive
+    - xaw3dg-dev
+    - zlib1g-dev
+     
+  package:
+    name: "{{ installed_packages }}"
+    state: present
+    update_cache: yes 
+  become: yes
+  with_items: "{{ installed_packages }}"
