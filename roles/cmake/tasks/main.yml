@@ -1,0 +1,25 @@
+- name: "Get Cmake sources"
+  git:
+    repo: https://gitlab.kitware.com/cmake/cmake.git
+    dest: "{{ lookup('env', 'ROOTDIR') }}/CMake"
+    version: v3.18.4
+
+- name: "Bootstrap CMake"
+  command: "./bootstrap --prefix={{ home_dir }}/pkg"
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/CMake"
+
+- name: "Compile CMake"
+  make:
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/CMake"
+    target: all
+    params:
+      NUM_THREADS: 4
+
+- name: "Install CMake"
+  make:
+    chdir: "{{ lookup('env', 'ROOTDIR') }}/CMake"
+    target: install
+
+- name: "Stow CMake"
+  command: stow -v -S "{{ home_dir }}/pkg/CMake" -t /usr/local
+  become: yes
