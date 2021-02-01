@@ -1,0 +1,9 @@
+- name: "Doom Emacs - check-out"
+  git:
+    repo: https://github.com/hlissner/doom-emacs
+    dest: "{{ home_dir }}/.emacs.d"
+    depth: 1
+
+- name: "Doom Emacs - install script"
+  chdir: "{{ home_dir }}/.emacs.d/bin"
+  cmd: "./doom install --yes"
