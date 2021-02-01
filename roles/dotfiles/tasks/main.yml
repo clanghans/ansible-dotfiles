@@ -1,0 +1,13 @@
+- name: Install Xmodmap
+  file:
+    src: "{{ role_path }}/files/dot-Xmodmap"
+    dest: "{{ home_dir }}/.Xmodmap"
+    state: link
+    force: yes
+
+- name: Install gitconfig
+  file:
+    src: "{{ role_path }}/files/dot-gitconfig"
+    dest: "{{ home_dir }}/.gitconfig"
+    state: link
+    force: yes

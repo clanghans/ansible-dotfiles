@@ -1,0 +1,7 @@
+keycode  26 = e E eacute egrave EuroSign NoSymbol EuroSign EuroSign
+keycode  28 = t T EuroSign EuroSign tslash Tslash
+keycode  30 = u U udiaeresis Udiaeresis downarrow uparrow
+keycode  32 = o O odiaeresis Odiaeresis oslash Oslash
+keycode  38 = a A adiaeresis Adiaeresis ae AE
+keycode  39 = s S ssharp S U017F U1E9E
+keycode 108 = Mode_switch NoSymbol Mode_switch 
